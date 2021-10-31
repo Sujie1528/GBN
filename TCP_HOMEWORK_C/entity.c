@@ -84,7 +84,6 @@ void send_window(void)
     while (A.nextseq < A.buffer_next && A.nextseq < A.base + A.window_size)
     {
         struct pkt *packet = &A.packet_buffer[A.nextseq % BUFSIZE];
-        printf("  send_window: send packet (seq=%d): %s\n", packet->seqnum, packet->payload);
         tolayer3_A(*packet);
         if (A.base == A.nextseq)
             starttimer_A(A.estimated_rtt);
